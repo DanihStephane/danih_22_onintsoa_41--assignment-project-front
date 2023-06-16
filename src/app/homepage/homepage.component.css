@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; }
+
+.demo-section + .demo-section {
+  margin-top: 16px; }
+
+::ng-deep app-root,
+::ng-deep app-homepage {
+  height: 100%;
+  display: block; }
+
+.wrap-sidebar-nav {
+  display: flex;
+  height: 100%; }
+  .wrap-sidebar-nav .sidebare {
+    width: 30%;
+    background-color: #a1a1a1; }
+  .wrap-sidebar-nav .sidebare-page {
+    width: 70%;
+    padding: 25px; }
+
+/*# sourceMappingURL=homepage.component.css.map */

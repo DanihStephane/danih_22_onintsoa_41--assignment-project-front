@@ -1,0 +1,17 @@
+
+
+<div class="d-flex flex-column gap-4 login-form">
+  <h1 class="mb-4">Connexion</h1>
+  <mat-form-field>
+    <mat-label>Nom d'utilisateur</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Mot de passe</mat-label>
+    <input matInput type="password">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" class="d-block" (click)="onLoginClick()">Se connecter</button>
+  <a class="text-center text-black" href="/registration">S'inscrire</a>
+</div>
