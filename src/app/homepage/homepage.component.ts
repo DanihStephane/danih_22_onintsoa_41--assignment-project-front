@@ -6,6 +6,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 //Drag and drop
 import {NgFor} from '@angular/common';
@@ -20,6 +21,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { NewAssignmentComponent } from "../new-assignment/new-assignment.component";
 import { Dialog,  DialogModule } from '@angular/cdk/dialog';
+import {ShowAssignmentComponent} from "../show-assignment/show-assignment.component";
 
 //Modal assignment
 
@@ -40,7 +42,8 @@ import { Dialog,  DialogModule } from '@angular/cdk/dialog';
     //drag and drop
     CdkDropListGroup, CdkDropList, NgFor, CdkDrag,DragDropModule,
     //Modal
-    DialogModule
+    DialogModule,
+    MatIconModule
   ],
 })
 export class HomepageComponent {
@@ -73,5 +76,9 @@ export class HomepageComponent {
 
   logout(): void{
     this.router.navigate(['/login']);
+  }
+
+  openShowAssignmentModal(): void {
+    this.dialog.open<string>(ShowAssignmentComponent);
   }
 }
