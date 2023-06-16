@@ -6,13 +6,13 @@
           <img src="../../assets/images/avatar.jpg" alt="">
         </div>
         <p class="mb-0">
-          <span class="d-block">User</span>
-          <span class="d-block">Administrateur</span>
+          <span class="d-block">Assignment</span>
+          <span class="d-block">Application Ultra</span>
         </p>
       </div>
     </div>
     <mat-list role="list" class="nav-menu">
-      <mat-list-item role="listitem" class="text-black">
+      <mat-list-item role="listitem" class="text-black" (click)="openNewAssignmentModal()">
         <div class="d-flex align-items-center gap-4">
           <svg fill="#5c8eff" height="15px" width="15px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -27,7 +27,7 @@
               </g>
             </g>
           </svg>
-          Item 1
+          New Assignment
         </div>
       </mat-list-item>
       <mat-list-item role="listitem" class="text-black">
@@ -36,7 +36,7 @@
             <path stroke="#5c8eff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M20 12h-9.5m7.5 3l3-3-3-3m-5-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2h5a2 2 0 002-2v-1"/>
           </svg>
-          Item 2
+          Logout
         </div>
       </mat-list-item>
     </mat-list>
@@ -46,7 +46,7 @@
     <div class="toolbar">
       <div class="form-toolbare d-flex gap-4">
         <mat-form-field>
-          <mat-label>Mot de passe</mat-label>
+          <mat-label>Recherche...</mat-label>
           <input matInput type="password">
         </mat-form-field>
 

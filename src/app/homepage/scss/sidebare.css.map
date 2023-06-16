@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,KAAM;EACJ,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,WAAW,EAAE,UAAU;;AAGzB,6BAA8B;EAC5B,UAAU,EAAE,IAAI",
+"sources": ["sidebare.scss"],
+"names": [],
+"file": "sidebare.css"
+}
