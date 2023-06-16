@@ -1,14 +1,85 @@
 <div class="wrap-sidebar-nav">
   <div class="sidebare">
-  <div class="profile">
-    <img src="" alt="">
-  </div>
+    <div class="avatar d-flex align-items-start px-4">
+      <div class="d-flex align-items-center gap-4">
+        <div class="img">
+          <img src="../../assets/images/avatar.jpg" alt="">
+        </div>
+        <p class="mb-0">
+          <span class="d-block">User</span>
+          <span class="d-block">Administrateur</span>
+        </p>
+      </div>
+    </div>
+    <mat-list role="list" class="nav-menu">
+      <mat-list-item role="listitem" class="text-black">
+        <div class="d-flex align-items-center gap-4">
+          <svg fill="#5c8eff" height="15px" width="15px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+               viewBox="0 0 27.963 27.963" xml:space="preserve">
+            <g>
+              <g id="c140__x2B_">
+                <path d="M13.98,0C6.259,0,0,6.26,0,13.982s6.259,13.981,13.98,13.981c7.725,0,13.983-6.26,13.983-13.981
+                  C27.963,6.26,21.705,0,13.98,0z M21.102,16.059h-4.939v5.042h-4.299v-5.042H6.862V11.76h5.001v-4.9h4.299v4.9h4.939v4.299H21.102z
+                  "/>
+              </g>
+              <g id="Capa_1_9_">
+              </g>
+            </g>
+          </svg>
+          Item 1
+        </div>
+      </mat-list-item>
+      <mat-list-item role="listitem" class="text-black">
+        <div class="d-flex align-items-center gap-4">
+          <svg width="20px" height="25px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <path stroke="#5c8eff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12h-9.5m7.5 3l3-3-3-3m-5-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2h5a2 2 0 002-2v-1"/>
+          </svg>
+          Item 2
+        </div>
+      </mat-list-item>
+    </mat-list>
+
   </div>
   <div class="sidebare-page">
     <div class="toolbar">
+      <div class="form-toolbare d-flex gap-4">
+        <mat-form-field>
+          <mat-label>Mot de passe</mat-label>
+          <input matInput type="password">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker class="text-black" #picker></mat-datepicker>
+        </mat-form-field>
+        <button mat-raised-button class="btn-default" color="primary">Rechercher</button>
+      </div>
+
+      <div class="avatar d-flex align-items-start ">
+        <div class="d-flex align-items-center gap-4">
+          <div class="img">
+            <img src="../../assets/images/profile.jpg" alt="">
+          </div>
+          <p class="mb-0">
+            <span class="d-block">User</span>
+            <span class="d-block">Administrateur</span>
+          </p>
+        </div>
+
+      </div>
 
     </div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aspernatur aut autem blanditiis consequatur delectus,
-      est facere, facilis iste natus, neque nobis placeat porro quam quas quasi quo repellendus tenetur!</p>
+   <div class="content-page-sidebare">
+    <div class="d-flex gap-4 justify-content-between">
+      <mat-card>
+        <mat-card-content class="bg-white">Simple card</mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-content class="bg-white">Simple card</mat-card-content>
+      </mat-card>
+    </div>
+   </div>
   </div>
 </div>

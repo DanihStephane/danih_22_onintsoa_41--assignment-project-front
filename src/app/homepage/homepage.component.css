@@ -13,12 +13,60 @@
 
 .wrap-sidebar-nav {
   display: flex;
-  height: 100%; }
+  height: 100%;
+  width: 100%; }
   .wrap-sidebar-nav .sidebare {
-    width: 30%;
-    background-color: #a1a1a1; }
+    width: 250px;
+    background-color: #fff;
+    box-shadow: 3px 0px 5px #e9e9e9 !important;
+    position: absolute;
+    height: 100%;
+    padding: 1.5rem 0; }
+    .wrap-sidebar-nav .sidebare .avatar {
+      margin-bottom: 3rem; }
   .wrap-sidebar-nav .sidebare-page {
-    width: 70%;
-    padding: 25px; }
+    width: 100%;
+    background-color: #f3f3f3;
+    padding-left: 250px; }
+    .wrap-sidebar-nav .sidebare-page .toolbar {
+      background-color: #fff;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding: 1rem 1.5rem 0rem; }
+      .wrap-sidebar-nav .sidebare-page .toolbar .btn-default {
+        height: 53px;
+        background: #5c8eff; }
+
+.avatar .img {
+  width: 52px;
+  height: 52px;
+  overflow: hidden;
+  border-radius: 80px; }
+  .avatar .img img {
+    width: 100%; }
+
+.sidebare .img {
+  width: 55px;
+  height: 55px;
+  border-radius: 0; }
+
+.form-toolbare {
+  align-items: start; }
+  .form-toolbare .mdc-text-field--filled {
+    height: 48px !important; }
+
+.sidebare-page .content-page-sidebare {
+  padding: 1rem; }
+  .sidebare-page .content-page-sidebare .mat-mdc-card {
+    position: relative;
+    width: 100%; }
+
+.bg-white {
+  background-color: #ffffff !important; }
+
+::ng-deep .nav-menu .mdc-list-item__primary-text {
+  color: #000 !important;
+  cursor: pointer; }
 
 /*# sourceMappingURL=homepage.component.css.map */
