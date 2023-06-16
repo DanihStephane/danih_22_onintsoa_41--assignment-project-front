@@ -70,4 +70,8 @@ export class HomepageComponent {
   openNewAssignmentModal(): void {
     this.dialog.open<string>(NewAssignmentComponent);
   }
+
+  logout(): void{
+    this.router.navigate(['/login']);
+  }
 }
