@@ -140,3 +140,18 @@
 ::ng-deep .mat-calendar-controls button:after{
   border-color: #333!important;
 }
+::ng-deep ::placeholder,
+::ng-deep ::-webkit-input-placeholder,
+::ng-deep ::-webkit-input-placeholder{
+  color: #000000!important;
+}
+::ng-deep .btn-close{
+  padding: 0!important;
+  background-color: transparent!important;
+  border: none!important;
+  outline: none!important;
+  cursor: pointer;
+}
+::ng-deep .cdk-overlay-pane{
+  background-color: #ffffff!important;
+ }

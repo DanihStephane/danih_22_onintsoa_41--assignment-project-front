@@ -1,0 +1,47 @@
+:host {
+  display: block;
+  border-radius: 8px;
+  padding: 16px;
+  max-width: 500px;
+  width: 100%;
+  animation: custom-dialog-enter 1s ease;
+}
+.register-form{
+  max-width: 500px;
+  margin: auto;
+  width: 100%;
+  padding: 16px 22px 45px;
+  background: #fff;
+}
+::ng-deep app-root,
+::ng-deep app-login{
+  height: 100%;
+  display: block;
+}
+::ng-deep app-registration{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #f3f3f3;
+}
+::ng-deep .btn-default {
+  border: 1px #000000 solid;
+  background-color: #ffffff;
+  color: #000000!important;
+}
+::ng-deep .mdc-button__label{
+  display: flex;
+  gap: .5rem;
+}
+
+/*::ng-deep .cdk-global-overlay-wrapper{*/
+/*  display: block;*/
+/*}*/
+/*::ng-deep .cdk-overlay-pane,*/
+/*::ng-deep .cdk-dialog-container{*/
+/*  height: 100%;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*}*/

@@ -19,9 +19,14 @@ import {
   transferArrayItem,
   DragDropModule,
 } from '@angular/cdk/drag-drop';
-import { NewAssignmentComponent } from "../new-assignment/new-assignment.component";
+import { NewAssignmentComponent } from "../assignments/new-assignment/new-assignment.component";
 import { Dialog,  DialogModule } from '@angular/cdk/dialog';
-import {ShowAssignmentComponent} from "../show-assignment/show-assignment.component";
+import {ShowAssignmentComponent} from "../assignments/show-assignment/show-assignment.component";
+import {SnackbarService} from "../services/snackbar.service";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {ConfirmAssignmentComponent} from "../assignments/confirm-assignment/confirm-assignment.component";
+import {ReturnAssignmentComponent} from "../assignments/return-assignment/return-assignment.component";
+import {DeleteAssignmentComponent} from "../assignments/delete-assignment/delete-assignment.component";
 
 //Modal assignment
 
@@ -43,13 +48,17 @@ import {ShowAssignmentComponent} from "../show-assignment/show-assignment.compon
     CdkDropListGroup, CdkDropList, NgFor, CdkDrag,DragDropModule,
     //Modal
     DialogModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ],
+  providers: [
+    SnackbarService
+  ]
 })
 export class HomepageComponent {
   username: string = '';
 
-  constructor(private router: Router, public dialog: Dialog) {
+  constructor(private router: Router, public dialog: Dialog,private snackbarService: SnackbarService) {
 
   }
 
@@ -70,6 +79,21 @@ export class HomepageComponent {
         event.currentIndex,
       );
     }
+
+    if (event.currentIndex === 0) {
+      console.log('Élément déplacé current :', event.currentIndex);
+      console.log('Élément déplacé :', event.container.data);
+      console.log('Conteneur de destination :', event.container.id);
+      if (event.container.id === 'cdk-drop-list-0'){
+        this.openDeleteAssignmentModal();
+      }
+      if (event.container.id === 'cdk-drop-list-1'){
+        this.openReturnAssignmentModal();
+      }
+      if (event.container.id === 'cdk-drop-list-2'){
+        this.openConfirmAssignmentModal();
+      }
+    }
   }
 
   openNewAssignmentModal(): void {
@@ -83,4 +107,17 @@ export class HomepageComponent {
   openShowAssignmentModal(): void {
     this.dialog.open<string>(ShowAssignmentComponent);
   }
+
+  openConfirmAssignmentModal(): void {
+    this.dialog.open<string>(ConfirmAssignmentComponent);
+  }
+
+  openReturnAssignmentModal(): void {
+    this.dialog.open<string>(ReturnAssignmentComponent);
+  }
+
+  openDeleteAssignmentModal(): void {
+    this.dialog.open<string>(DeleteAssignmentComponent);
+  }
+
 }

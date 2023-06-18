@@ -42,17 +42,8 @@
     </mat-list>
 
 
-
-
-
-
-
-    <div style="position: fixed;
-                bottom: 0;">
-      <mat-card class="bg-white p-4">
-        <mat-card-header>
-          <mat-card-title>Corbeille</mat-card-title>
-        </mat-card-header>
+    <div class="corbeil-ticket">
+      <mat-card class="bg-white">
         <mat-card-content class="example-container">
           <div
             cdkDropList
@@ -131,7 +122,7 @@
               (cdkDropListDropped)="drop($event)">
               <mat-card class="bg-white mat-card-interne w-100 example-box" *ngFor="let item of todo" cdkDrag>
                 <mat-card-header class="w-100 mb-4">
-                  <mat-card-title class="d-flex gap-4 justify-content-between">
+                  <mat-card-title class="d-flex gap-4 justify-content-between align-items-center">
                     {{item}}
                     <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
@@ -155,7 +146,7 @@
 
                 <mat-card-content style="cursor: pointer;" (click)="openShowAssignmentModal()">
                   <div class="drag-here">
-                    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                    <img mat-card-image class="img-assignment" src="https://material.angular.io/assets/img/examples/shiba2.jpg"
                          alt="Photo of a Shiba Inu">
                   </div>
                 </mat-card-content>
@@ -179,7 +170,7 @@
               (cdkDropListDropped)="drop($event)">
               <mat-card class="bg-white mat-card-interne w-100 example-box" *ngFor="let item of done" cdkDrag>
                 <mat-card-header class="w-100 mb-4">
-                  <mat-card-title class="d-flex gap-4 justify-content-between">
+                  <mat-card-title class="d-flex gap-4 justify-content-between align-items-center">
                     {{item}}
                     <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
@@ -203,7 +194,7 @@
 
                 <mat-card-content style="cursor: pointer;" (click)="openShowAssignmentModal()">
                   <div class="drag-here">
-                    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                    <img mat-card-image class="img-assignment" src="https://material.angular.io/assets/img/examples/shiba2.jpg"
                          alt="Photo of a Shiba Inu">
                   </div>
                 </mat-card-content>
