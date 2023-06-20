@@ -6,7 +6,7 @@
 
 ## Fonctionnalité
 
-En plus des fonctionnalités déjà présentent pendant les cours dans cyyyyye TP, nous avons ajouté les fonctionnalités suivantes:
+En plus des fonctionnalités déjà présentent pendant les cours dans ce TP, nous avons ajouté les fonctionnalités suivantes:
 
 1-Login avec JWT authentification
 
