@@ -7,7 +7,7 @@
         </div>
         <p class="mb-0">
           <span class="d-block">Assignment</span>
-          <span class="d-block">Application Ultra</span>
+          <span class="d-block">Application de gestion</span>
         </p>
       </div>
     </div>
@@ -27,7 +27,7 @@
               </g>
             </g>
           </svg>
-          New assignment
+          Créer un nouveau devoir
         </div>
       </mat-list-item>
       <mat-list-item role="listitem" class="text-black" (click)="logout()">
@@ -36,12 +36,10 @@
             <path stroke="#5c8eff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M20 12h-9.5m7.5 3l3-3-3-3m-5-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2h5a2 2 0 002-2v-1"/>
           </svg>
-          Logout
+          Se déconnecter
         </div>
       </mat-list-item>
     </mat-list>
-
-
     <div class="corbeil-ticket">
       <mat-card class="bg-white">
         <mat-card-content class="example-container">
@@ -70,7 +68,6 @@
         </mat-card-content>
       </mat-card>
     </div>
-
   </div>
   <div class="sidebare-page">
     <div class="toolbar">
@@ -79,7 +76,6 @@
           <mat-label>Recherche...</mat-label>
           <input matInput type="password">
         </mat-form-field>
-
         <mat-form-field>
           <mat-label>Choose a date</mat-label>
           <input matInput [matDatepicker]="picker">
@@ -88,7 +84,6 @@
         </mat-form-field>
         <button mat-raised-button class="btn-default" color="primary">Rechercher</button>
       </div>
-
       <div class="avatar d-flex align-items-start ">
         <div class="d-flex align-items-center gap-4">
           <div class="img">
@@ -100,102 +95,121 @@
           </p>
         </div>
       </div>
-
     </div>
     <div class="content-page-sidebare">
-
-
-
-
-<!--      //&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
-
-      <div class="d-flex gap-4 justify-content-between">
-
-
-        <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport" #scroller style="margin: auto;">
-          <main class="container">
-            <div class="example-container">
-              <h3>Non rendu</h3>
-
-              <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="assignments" [cdkDropListConnectedTo]="[doneList]"
-                   class="example-list" (cdkDropListDropped)="drop($event)" >
-                <div class="example-box" *ngFor="let item of assignments" cdkDrag >
-                  <mat-card class="product-card">
-                    <mat-card-header>
-                      <mat-card-subtitle style="color: black">
-                        Devoir : {{item.nom}}
-                      </mat-card-subtitle>
-                      <mat-card-subtitle style="color: black">
-                        Matière: {{item.matiere.nom}}
-                      </mat-card-subtitle>
-                      <mat-card-subtitle style="color: black">
-                        Elève: {{item.eleve.nom}}
-                      </mat-card-subtitle>
-                      <mat-card-subtitle style="color: black">
-                        <small>à rendre le: {{item.dateDeRendu }}</small>
-                      </mat-card-subtitle>
-                      <div mat-card-avatar>
-                        <img [src]="item.matiere.photoProf" [alt]="item.matiere.nom" class="avatar">
-                      </div>
-                    </mat-card-header>
-                    <mat-card-actions>
-                      <button mat-button color="primary" (click)="editAssignment(item)"><mat-icon>edit</mat-icon>Modifier</button>
-                      <button mat-button color="primary" (click)="viewDetails(item)"><mat-icon>details</mat-icon>Détail</button>
-                    </mat-card-actions>
-                  </mat-card>
+      <div class="w-100 h-100">
+        <cdk-virtual-scroll-viewport itemSize="50" class="w-100 h-100  " #scroller style="margin: auto;">
+          <div class="d-flex gap-4 justify-content-between example-viewport w-100 h-100 ">
+            <mat-card class="bg-white p-4">
+              <mat-card-header>
+                <mat-card-title>Non Rendu</mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="example-container">
+                <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="assignments" [cdkDropListConnectedTo]="[doneList]"
+                     class="example-list" (cdkDropListDropped)="drop($event)" >
+                  <div *ngFor="let item of assignments" cdkDrag >
+                    <mat-card class="bg-white mat-card-interne w-100 example-box">
+                      <mat-card-header>
+                        <mat-card-title class="d-flex gap-4 justify-content-between align-items-center">
+                          Devoir : {{item.nom}}
+                          <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+                            <path d="M0 0h24v24H0z" fill="none"></path>
+                          </svg>
+                        </mat-card-title>
+                        <mat-card-subtitle class="d-flex">
+                          <div class="avatar d-flex align-items-start ">
+                            <div class="d-flex align-items-center gap-1">
+                              <p class="mb-0">
+                                <span class="d-block text-black"> Matière: {{item.matiere.nom}}</span>
+                              </p>
+                              <div class="img" mat-card-avatar>
+                                <img [src]="item.matiere.photoProf" [alt]="item.matiere.nom">
+                              </div>
+                            </div>
+                          </div>
+                        </mat-card-subtitle>
+                      </mat-card-header>
+                      <mat-card-content>
+                        <mat-card-subtitle style="color: black">
+                        </mat-card-subtitle>
+                        <mat-card-subtitle style="color: black">
+                        </mat-card-subtitle>
+                        <mat-card-content style="cursor: pointer;">
+                          <div class="drag-here">
+                            <img src="../../assets/images/defaulte.jpg" alt="" style="width: 400px">
+                          </div>
+                          <div class="cat">
+                            <div class="btn-cat">
+                              <small class="text-black d-block">Elève: {{item.eleve.nom}}</small>
+                              <small class="text-black d-block">à rendre le: {{item.dateDeRendu }}</small>
+                            </div>
+                          </div>
+                        </mat-card-content>
+                      </mat-card-content>
+                      <mat-card-actions class="d-flex justify-content-center gap-4">
+                        <button mat-button color="primary" (click)="editAssignment(item)"><mat-icon>edit</mat-icon>Modifier</button>
+                        <button mat-button color="primary" (click)="viewDetails(item)"><mat-icon>visibility</mat-icon>Détail</button>
+                      </mat-card-actions>
+                    </mat-card>
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="example-container">
-              <h3>Rendu</h3>
-
-              <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="assignmentsRendu" class="example-list"
-                   (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let item of assignmentsRendu">
-                  <mat-card class="product-card-done">
-                    <mat-card-header>
-                      <mat-card-subtitle style="color: black">
-                        Devoir : {{item.nom}}
-                      </mat-card-subtitle>
-                      <mat-card-subtitle style="color: black">
-                        Matière: {{item.matiere.nom}}
-                      </mat-card-subtitle>
-                      <mat-card-subtitle style="color: black">
-                        Elève: {{item.eleve.nom}}
-                      </mat-card-subtitle>
-                      <mat-card-subtitle style="color: black">
-                        <small>à rendre le: {{item.dateDeRendu }}</small>
-                      </mat-card-subtitle>
-                      <div mat-card-avatar>
-                        <img [src]="item.matiere.photoProf" [alt]="item.matiere.nom" class="avatar">
-                      </div>
-                    </mat-card-header>
-                    <mat-card-actions>
-                      <button mat-button color="primary" (click)="viewDetails(item)"><mat-icon>details</mat-icon>Détail</button>
-                    </mat-card-actions>
-                  </mat-card>
+              </mat-card-content>
+            </mat-card>  <!--  Non Rendue-->
+            <mat-card class="bg-white p-4">
+              <mat-card-header>
+                <mat-card-title>Rendu</mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="example-container">
+                <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="assignmentsRendu" class="example-list"
+                     (cdkDropListDropped)="drop($event)">
+                  <div class="example-box" *ngFor="let item of assignmentsRendu">
+                    <mat-card class="product-card-done bg-white mat-card-interne w-100 example-box">
+                      <mat-card-header>
+                        <mat-card-title class="d-flex gap-4 justify-content-between align-items-center">
+                          Devoir : {{item.nom}}
+                          <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+                            <path d="M0 0h24v24H0z" fill="none"></path>
+                          </svg>
+                        </mat-card-title>
+                        <mat-card-subtitle class="d-flex">
+                          <div class="avatar d-flex align-items-start ">
+                            <div class="d-flex align-items-center gap-1">
+                              <p class="mb-0">
+                                <span class="d-block text-black"> Matière: {{item.matiere.nom}}</span>
+                              </p>
+                              <div class="img" mat-card-avatar>
+                                <img [src]="item.matiere.photoProf" [alt]="item.matiere.nom" class="avatar">
+                              </div>
+                            </div>
+                          </div>
+                        </mat-card-subtitle>
+                      </mat-card-header>
+                      <mat-card-content>
+                        <mat-card-content style="cursor: pointer;">
+                          <div class="drag-here">
+                            <img src="../../assets/images/defaulte.jpg" alt="" style="width: 400px">
+                          </div>
+                          <div class="cat">
+                            <div class="btn-cat">
+                              <small class="text-black d-block">Elève: {{item.eleve.nom}}</small>
+                              <small class="text-black d-block"><small>à rendre le: {{item.dateDeRendu }}</small></small>
+                            </div>
+                          </div>
+                        </mat-card-content>
+                      </mat-card-content>
+                      <mat-card-actions class="d-flex justify-content-center gap-4">
+                        <button mat-button color="primary" (click)="viewDetails(item)"><mat-icon>visibility</mat-icon>Détail</button>
+                      </mat-card-actions>
+                    </mat-card>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </main>
+              </mat-card-content>
+            </mat-card>
+          </div>
         </cdk-virtual-scroll-viewport>
-
-
-
-
-
-
-
-
-
-
       </div>
-<!--      //&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
-
-
-
-
     </div>
   </div>
 </div>

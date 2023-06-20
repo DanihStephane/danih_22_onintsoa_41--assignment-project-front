@@ -1,3 +1,16 @@
+export class Matiere{
+  _id!: string;
+  nom!: string;
+  photo!: string;
+  photoProf!: string;
+}
+
+export class Eleve{
+  _id!: string;
+  nom!: string;
+  photo!: string;
+}
+
 export class Assignment {
   _id!: string;
   id!: number;
@@ -10,17 +23,4 @@ export class Assignment {
   remarques?:string;
   eleve_id?: string;
   matiere_id?: string;
-}
-
-export class Eleve{
-  _id!: string;
-  nom!: string;
-  photo!: string;
-}
-
-export class Matiere{
-  _id!: string;
-  nom!: string;
-  photo!: string;
-  photoProf!: string;
 }

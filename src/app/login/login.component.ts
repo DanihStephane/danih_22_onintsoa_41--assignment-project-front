@@ -25,14 +25,10 @@ export class LoginComponent implements OnInit {
   constructor(private authService:AuthService, private router: Router,private snackbarService: SnackbarService) { }
 
   onSubmit() {
-
     this.authService.logIn(this.nom, this.password)
       .subscribe(reponse => {
         var userT = reponse as UsersToken;
         sessionStorage.setItem("token", userT.token);
-
-        // il va falloir naviguer (demander au router) d'afficher à nouveau la liste
-        // en gros, demander de naviguer vers /home
         this.router.navigate(['/homepage']);
       }, error => {
         console.log("erreur = " + error.error);

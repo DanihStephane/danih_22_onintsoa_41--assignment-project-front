@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { LoggingService } from './logging.service';
 import { HttpClient } from '@angular/common/http';
 import { ELEVE } from './constants';
 import { environment } from 'src/environments/environment';
@@ -16,8 +15,7 @@ export class EleveService {
     private http: HttpClient)
   { }
 
-  getAllEleves(): Observable<{code: number, data: Eleve[]}>{ // Recuperer tous les élèves par api
+  getAllEleves(): Observable<{code: number, data: Eleve[]}>{
     return this.http.get<{code: number, data: Eleve[]}>(this.uri_api)
   }
-
 }

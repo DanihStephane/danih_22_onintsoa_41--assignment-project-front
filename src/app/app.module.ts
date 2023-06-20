@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -22,22 +21,18 @@ import { ShowAssignmentComponent } from './assignments/show-assignment/show-assi
 import { ConfirmAssignmentComponent } from './assignments/confirm-assignment/confirm-assignment.component';
 import { DeleteAssignmentComponent } from './assignments/delete-assignment/delete-assignment.component';
 import { ReturnAssignmentComponent } from './assignments/return-assignment/return-assignment.component';
-
 import { ModalComponent } from "./homepage/homepage.component";
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { AssignmentDetailComponent} from "./assignments/assignment-detail/assignment-detail.component";
-import { EditAssignmentComponent } from "./assignments/edit-assignment/edit-assignment.component";
+import { InformationAssignmentComponent} from "./assignments/information-assignment/information-assignment.component";
+import { EditionAssignmentComponent } from "./assignments/edition-assignment/edition-assignment.component";
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 //requete
 import { HttpClientModule } from '@angular/common/http';
-
 import { CommonModule } from '@angular/common';
-
 import { ScrollingModule } from '@angular/cdk/scrolling';
-
 
 
 @NgModule({
@@ -50,8 +45,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     DeleteAssignmentComponent,
     ReturnAssignmentComponent,
     ModalComponent,
-    AssignmentDetailComponent,
-    EditAssignmentComponent
+    InformationAssignmentComponent,
+    EditionAssignmentComponent
   ],
   imports: [
     BrowserModule,

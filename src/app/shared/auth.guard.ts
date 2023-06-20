@@ -13,11 +13,8 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-
-    // si renvoie true ça dit que les routes associées à ce gardien sont navigables
     return this.authService.isAdmin()
     .then((token) => {
-      //console.log("admin = " + admin + " type : " + (typeof admin))
       if(token) {
         console.log("GARDIEN autorise la navigation, vous êtes bien un admin");
         return true;

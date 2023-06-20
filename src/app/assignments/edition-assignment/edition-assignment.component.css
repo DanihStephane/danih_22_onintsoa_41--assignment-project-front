@@ -68,7 +68,3 @@
   display: flex;
   gap: .5rem;
 }
-
-.mat-mdc-select-value {
-  color: black;
-}

@@ -9,8 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { NewAssignmentComponent } from "../assignments/new-assignment/new-assignment.component";
 import { CommonModule } from '@angular/common';
-
-//Drag and drop
 import {NgFor} from '@angular/common';
 import {
   CdkDragDrop,
@@ -25,21 +23,15 @@ import { Dialog,  DialogModule } from '@angular/cdk/dialog';
 import {SnackbarService} from "../services/snackbar.service";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { Assignment } from '../assignments/assignment.model';
-
-
 import { AuthService } from '../shared/auth.service';
-
 import { AssignmentsService } from "../shared/assignments.service";
-
 import {CdkFixedSizeVirtualScroll, CdkVirtualScrollViewport} from '@angular/cdk/scrolling';
-
 import { HttpStatusCode } from '@angular/common/http';
-
 import { MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-
 import { filter, map, pairwise, tap } from 'rxjs';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {EditionAssignmentComponent} from "../assignments/edition-assignment/edition-assignment.component";
+import {InformationAssignmentComponent} from "../assignments/information-assignment/information-assignment.component";
 
 @Component({
   selector: 'app-homepage',
@@ -53,9 +45,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
         MatNativeDateModule,
         MatInputModule,
         MatButtonModule,
-        //drag and drop
         CdkDropListGroup, CdkDropList, NgFor, CdkDrag, DragDropModule,
-        //Modal
         DialogModule,
         MatIconModule,
         MatSnackBarModule,
@@ -72,7 +62,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class HomepageComponent implements OnInit {
 
   openNewAssignmentModal(): void {
-    this.dialog.open(NewAssignmentComponent);
+    const dialogRef = this.dialog.open(NewAssignmentComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      location.reload();
+    });
   }
 
   logout(): void{
@@ -85,14 +78,10 @@ export class HomepageComponent implements OnInit {
   titre="Liste des devoirs à rendre";
   errorMessage?: string ;
   isDragEnabled: boolean= false;
-// les données à afficher
   assignments:Assignment[] = [];
-
   assignmentsRendu: Assignment[] = [];
-// Pour la data table
   displayedColumns: string[] = ['id', 'nom', 'dateDeRendu', 'rendu'];
 
-// propriétés pour la pagination
   page: number=1;
   limit: number=10;
   totalDocs: number = 0;
@@ -101,7 +90,6 @@ export class HomepageComponent implements OnInit {
   prevPage: number = 0;
   hasNextPage: boolean = false;
   nextPage: number = 0;
-
 
   @ViewChild('scroller') scroller!: CdkVirtualScrollViewport;
 
@@ -115,20 +103,9 @@ export class HomepageComponent implements OnInit {
   {}
 
   ngOnInit(): void {
-    console.log("OnInit Composant instancié et juste avant le rendu HTML (le composant est visible dans la page HTML)");
-    // exercice : regarder si il existe des query params
-    // page et limit, récupérer leur valeurs si elles existent
-    // et les passer à la méthode getAssignments
-    // TODO
-    //this.isDragEnabled = this.authService.loggedInAsAdmin;
     this.getAssignments();
   }
 
-  detail(itemId: string) {
-    // Replace 'details' with the actual route path for your details component
-    this.router.navigate(['/assignments/', itemId]);
-  }
-  // Callback pour la liste
   onSuccessList = (reponse: any) =>{
     if(reponse.code == HttpStatusCode.Accepted){
       this.filterData(reponse.data.docs);
@@ -154,37 +131,26 @@ export class HomepageComponent implements OnInit {
 
   ngAfterViewInit() {
     console.log("after view init");
-
     if(!this.scroller) return;
-
-    // on s'abonne à l'évènement scroll de la liste
     this.scroller.elementScrolled()
       .pipe(
         tap(event => {
-          //console.log(event);
         }),
         map(event => {
           return this.scroller.measureScrollOffset('bottom');
         }),
         tap(y => {
-          //console.log("y = " + y);
         }),
         pairwise(),
         tap(([y1, y2]) => {
-          //console.log("y1 = " + y1 + " y2 = " + y2);
         }),
         filter(([y1, y2]) => {
           return y2 < y1 && y2 < 100;
         }),
-        // Pour n'envoyer des requêtes que toutes les 200ms
-        //throttleTime(200)
       )
       .subscribe((val) => {
-        // console.log("val = " + val);
-        // console.log("je CHARGE DE NOUVELLES DONNEES page = " + this.page);
         this.ngZone.run(() => {
           if(!this.hasNextPage) return;
-
           this.page = this.nextPage;
           this.getAddAssignmentsForScroll();
         });
@@ -199,16 +165,22 @@ export class HomepageComponent implements OnInit {
 
   editAssignment(item: any) {
     console.log(item);
-    // Navigate to the edit page with the item's ID as a parameter
-    this.router.navigate(['/assignments/'+item._id+'/edit', ]);
+    let dialogRef = this.dialog.open(EditionAssignmentComponent, {
+      data: { itemId: item._id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      location.reload();
+    });
   }
 
   viewDetails(item: any) {
-    console.log(item);
-    // Navigate to the details page with the item's ID as a parameter
-    this.router.navigate(['/assignments/'+item._id]);
+    let dialogRef = this.dialog.open(InformationAssignmentComponent, {
+      data: { itemId: item._id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      location.reload();
+    });
   }
-
 
   setPageProperties(data: any){
     this.page = data.page;
@@ -220,7 +192,6 @@ export class HomepageComponent implements OnInit {
     this.hasNextPage = data.hasNextPage;
     this.nextPage = data.nextPage;
   }
-  // Drag and drop
 
   drop(event: CdkDragDrop<Assignment[], Assignment[], any>) {
     if (event.previousContainer === event.container) {
@@ -231,14 +202,11 @@ export class HomepageComponent implements OnInit {
       const previousIndex = event.previousIndex;
       const currentIndex = event.currentIndex;
       const draggedItem: Assignment = JSON.parse(JSON.stringify(previousContainer.data[previousIndex]));
-
       const dialogConfig = new MatDialogConfig();
-
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       dialogConfig.data = {real: previousContainer.data[previousIndex], copy:draggedItem};
       const dialogRef = this.dialog.open(ModalComponent, dialogConfig);
-
       dialogRef.afterClosed().subscribe((result) => {
         console.log(result);
         console.log(draggedItem);
@@ -255,6 +223,9 @@ export class HomepageComponent implements OnInit {
     }
   }
 }
+
+//code repris sur un collegue
+
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -263,7 +234,6 @@ export class HomepageComponent implements OnInit {
 export class ModalComponent {
   noteForm: FormGroup;
   errorMessage? : string;
-
   constructor(
     private assignmentsService: AssignmentsService,
     public dialogRef: MatDialogRef<ModalComponent>,
@@ -275,11 +245,9 @@ export class ModalComponent {
       remarks: ['']
     });
   }
-
   onCancel(): void {
     this.dialogRef.close();
   }
-
   onConfirm(): void {
     this.data.real.note = this.noteForm.value.note;
     this.data.real.remarques = this.noteForm.value.remarks;
@@ -294,13 +262,9 @@ export class ModalComponent {
           this.data.real = this.data.copy;
         }
       },(error) => {
-        // Handle the error
         this.errorMessage = error.message;
         this.data.real = this.data.copy;
         console.error(error);
       });
-
   }
-
-
 }

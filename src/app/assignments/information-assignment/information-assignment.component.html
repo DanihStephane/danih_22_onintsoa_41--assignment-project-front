@@ -1,0 +1,31 @@
+<main class="container" style="background-color: white">
+  <mat-card *ngIf="assignmentTransmis" class="example-card" style="background-color: white">
+    <mat-card-header>
+      <div class="avatar-container">
+        <img class="avatar" [src]="assignmentTransmis.matiere.photoProf" alt="Avatar">
+      </div>
+      <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="assignmentTransmis.matiere.photo" alt="Image">
+    <mat-card-content>
+      <h3>Matière: {{assignmentTransmis.matiere.nom}}</h3>
+      <h3>Elève: {{assignmentTransmis.eleve.nom}}</h3>
+      <h3>Remarque: {{assignmentTransmis.remarques}}</h3>
+    </mat-card-content>
+    <mat-card-footer>
+      <h3> {{ assignmentTransmis.rendu ? "Rendu" : "Non rendu" }}</h3>
+      <div *ngIf="assignmentTransmis.rendu">
+        Note : {{assignmentTransmis.note}}
+      </div>
+      <div class="date-container">
+        <p>{{ assignmentTransmis.dateDeRendu | date }}</p>
+      </div>
+    </mat-card-footer>
+    <mat-card-actions id="bottom" class="d-flex justify-content-center gap-4">
+      <button mat-raised-button color="accent" (click)="onDeleteAssignment()">
+        <mat-icon>delete</mat-icon>
+        SUPPRIMER
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</main>

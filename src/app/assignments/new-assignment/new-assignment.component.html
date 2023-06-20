@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card style="background-color: white">
   <mat-card-content>
     <mat-stepper [linear]="false" #stepper>
       <mat-step [stepControl]="firstFormGroup">
@@ -12,12 +12,11 @@
               Le titre du devoir est requis
             </mat-error>
           </mat-form-field>
-          <div>
+          <div class="d-flex justify-content-center gap-4">
             <button mat-button matStepperNext>Next</button>
           </div>
         </form>
       </mat-step>
-
       <mat-step [stepControl]="secondFormGroup" label="Matière">
         <form [formGroup]="secondFormGroup">
           <div class="form-container">
@@ -26,7 +25,7 @@
               <mat-select (valueChange)="changeMatiere($event)"
                           formControlName="matiere" [(ngModel)]="matiere"
               >
-                <mat-option *ngFor="let mat of matieres" [value]="mat._id" >
+                <mat-option *ngFor="let mat of matieres" [value]="mat._id">
                   {{mat.nom}}
                 </mat-option>
               </mat-select>
@@ -34,7 +33,6 @@
             <mat-error *ngIf="secondFormGroup.controls['matiere'].hasError('required') && submit">
               Veuillez sélectionner une matière
             </mat-error>
-
             <div class="image-container me-2" *ngIf="matiereSelected">
               <img [src]="matiereSelected.photo" mat-card-md-image>
             </div>
@@ -44,23 +42,20 @@
             <div class="image-container" *ngIf="matiereSelected">
               <img [src]="matiereSelected.photoProf" mat-card-md-image>
             </div>
-
           </div>
-          <div class="button-container">
+          <div class="button-container d-flex justify-content-center gap-4">
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
           </div>
         </form>
       </mat-step>
-
-
       <mat-step [stepControl]="thirdFormGroup" label="Elève">
         <form [formGroup]="thirdFormGroup">
           <div class="form-container">
             <mat-form-field>
               <mat-label>Elève</mat-label>
               <mat-select (valueChange)="changeEleve($event)" formControlName="eleve" [(ngModel)]="eleve">
-                <mat-option *ngFor="let mat of eleves" [value]="mat._id" >
+                <mat-option *ngFor="let mat of eleves" [value]="mat._id">
                   {{mat.nom}}
                 </mat-option>
               </mat-select>
@@ -68,18 +63,15 @@
             <mat-error *ngIf="thirdFormGroup.controls['eleve'].hasError('required') && submit">
               Veuillez sélectionner un élève
             </mat-error>
-
             <div class="image-container me-2" *ngIf="eleveSelected">
               <img [src]="eleveSelected.photo" mat-card-md-image>
             </div>
           </div>
         </form>
-        <div>
+        <div class="d-flex justify-content-center gap-4 align-items-end">
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button (click)="stepper.reset()">Reset</button>
-        </div>
-        <div class="btn-submit">
-          <button mat-button  color="success" (click)="onSubmit()">Enregistrer</button>
+          <button mat-button color="success" (click)="onSubmit()">Enregistrer</button>
         </div>
       </mat-step>
     </mat-stepper>

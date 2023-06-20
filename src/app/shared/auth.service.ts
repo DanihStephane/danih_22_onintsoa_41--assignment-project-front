@@ -15,17 +15,8 @@ export class AuthService {
     this.loggedIn = true;
   }
 
-  register(nom:string, password:string, photo:string, profil:Number) {
-    var id = Math.round(Math.random()*10000000);
-    return this.http.post('http://localhost:8010/api/users', {nom, password, photo, profil,id});
-  }
-
-  getLoggedIn(token:string) {
-    return this.http.get('http://localhost:8010/api/connected', {headers: {'x-access-token': token}});
-  }
-
   logOut() {
-    return this.http.get('http://localhost:8010/api/logout');
+    return this.http.get('https://mbds-assigment-api.onrender.com/api/logout');
   }
 
   isAdmin() {
