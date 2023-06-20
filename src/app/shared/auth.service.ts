@@ -8,7 +8,7 @@ export class AuthService {
   loggedIn = false;
 
   logIn(nom:string, password:string) {
-    return this.http.post('http://localhost:8010/api/login', {
+    return this.http.post('https://mbds-assigment-api.onrender.com/api/login', {
       nom: nom,
       mdp: password
     });
