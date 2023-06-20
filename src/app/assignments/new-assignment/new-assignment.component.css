@@ -46,6 +46,8 @@
 ::ng-deep .mat-mdc-input-element::placeholder{
   color: #333;
 }
+
+
 ::ng-deep .mat-step-header .mat-step-icon {
   background-color: #5c5c5cb3;
   color: #fff;

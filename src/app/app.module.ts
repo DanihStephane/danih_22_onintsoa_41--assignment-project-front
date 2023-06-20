@@ -23,6 +23,12 @@ import { ConfirmAssignmentComponent } from './assignments/confirm-assignment/con
 import { DeleteAssignmentComponent } from './assignments/delete-assignment/delete-assignment.component';
 import { ReturnAssignmentComponent } from './assignments/return-assignment/return-assignment.component';
 
+//requete
+import { HttpClientModule } from '@angular/common/http';
+
+
+
+
 
 
 
@@ -51,7 +57,8 @@ import { ReturnAssignmentComponent } from './assignments/return-assignment/retur
     MatNativeDateModule,
     MatCardModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
