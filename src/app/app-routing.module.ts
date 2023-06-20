@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'homepage', component: HomepageComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirection par défaut vers la page de connexion
+  { path: '', redirectTo: '/homepage', pathMatch: 'full' }, // Redirection par défaut vers la page de connexion
 ];
 
 @NgModule({

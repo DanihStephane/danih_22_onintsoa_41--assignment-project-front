@@ -12,7 +12,7 @@
       </div>
     </div>
     <mat-list role="list" class="nav-menu">
-      <mat-list-item role="listitem" class="text-black" (click)="openNewAssignmentModal()">
+      <mat-list-item role="listitem" class="text-black">
         <div class="d-flex align-items-center gap-4">
           <svg fill="#5c8eff" height="30px" width="30px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -45,15 +45,11 @@
     <div class="corbeil-ticket">
       <mat-card class="bg-white">
         <mat-card-content class="example-container">
-          <div
-            cdkDropList
-            [cdkDropListData]="delete"
-            class="example-list-basket"
-            (cdkDropListDropped)="drop($event)">
-            <mat-card class="bg-white mat-card-interne w-100 example-box" *ngFor="let item of delete" cdkDrag>
+          <div>
+            <mat-card class="bg-white mat-card-interne w-100 example-box">
               <mat-card-header class="w-100 mb-4">
                 <mat-card-title class="d-flex gap-4 justify-content-between">
-                  {{item}}
+                  Corbeille
                   <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
                     <path d="M0 0h24v24H0z" fill="none"></path>
@@ -107,106 +103,99 @@
 
     </div>
     <div class="content-page-sidebare">
+
+
+
+
+<!--      //&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
       <div class="d-flex gap-4 justify-content-between">
 
-        <mat-card class="bg-white p-4">
-          <mat-card-header>
-            <mat-card-title>Non Rendue</mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="example-container">
-            <!--interne-->
-            <div
-              cdkDropList
-              [cdkDropListData]="todo"
-              class="example-list"
-              (cdkDropListDropped)="drop($event)">
-              <mat-card class="bg-white mat-card-interne w-100 example-box" *ngFor="let item of todo" cdkDrag>
-                <mat-card-header class="w-100 mb-4">
-                  <mat-card-title class="d-flex gap-4 justify-content-between align-items-center">
-                    {{item}}
-                    <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
-                      <path d="M0 0h24v24H0z" fill="none"></path>
-                    </svg>
-                  </mat-card-title>
-                  <mat-card-subtitle>
-                    <div class="avatar d-flex align-items-start ">
-                      <div class="d-flex align-items-center gap-4">
-                        <p class="mb-0">
-                          <span class="d-block text-black">Responsable</span>
-                        </p>
-                        <div class="img">
-                          <img src="../../assets/images/profile.jpg" alt="">
-                        </div>
 
+        <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport" #scroller style="margin: auto;">
+          <main class="container">
+            <div class="example-container">
+              <h3>Non rendu</h3>
+
+              <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="assignments" [cdkDropListConnectedTo]="[doneList]"
+                   class="example-list" (cdkDropListDropped)="drop($event)" >
+                <div class="example-box" *ngFor="let item of assignments" cdkDrag >
+                  <mat-card class="product-card">
+                    <mat-card-header>
+                      <mat-card-subtitle style="color: black">
+                        Devoir : {{item.nom}}
+                      </mat-card-subtitle>
+                      <mat-card-subtitle style="color: black">
+                        Matière: {{item.matiere.nom}}
+                      </mat-card-subtitle>
+                      <mat-card-subtitle style="color: black">
+                        Elève: {{item.eleve.nom}}
+                      </mat-card-subtitle>
+                      <mat-card-subtitle style="color: black">
+                        <small>à rendre le: {{item.dateDeRendu }}</small>
+                      </mat-card-subtitle>
+                      <div mat-card-avatar>
+                        <img [src]="item.matiere.photoProf" [alt]="item.matiere.nom" class="avatar">
                       </div>
-                    </div>
-                  </mat-card-subtitle>
-                </mat-card-header>
-
-                <mat-card-content style="cursor: pointer;" (click)="openShowAssignmentModal()">
-                  <div class="drag-here">
-                    <img mat-card-image class="img-assignment" src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                         alt="Photo of a Shiba Inu">
-                  </div>
-                </mat-card-content>
-                <mat-card-actions class="d-flex align-items-center justify-content-center p-4">
-                  <button mat-button>Catégories</button>
-                </mat-card-actions>
-              </mat-card>
+                    </mat-card-header>
+                    <mat-card-actions>
+                      <button mat-button color="primary" (click)="editAssignment(item)"><mat-icon>edit</mat-icon>Modifier</button>
+                      <button mat-button color="primary" (click)="viewDetails(item)"><mat-icon>details</mat-icon>Détail</button>
+                    </mat-card-actions>
+                  </mat-card>
+                </div>
+              </div>
             </div>
-          </mat-card-content>
-        </mat-card>
 
-        <mat-card class="bg-white p-4">
-          <mat-card-header>
-            <mat-card-title>Rendue</mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="example-container">
-            <div
-              cdkDropList
-              [cdkDropListData]="done"
-              class="example-list"
-              (cdkDropListDropped)="drop($event)">
-              <mat-card class="bg-white mat-card-interne w-100 example-box" *ngFor="let item of done" cdkDrag>
-                <mat-card-header class="w-100 mb-4">
-                  <mat-card-title class="d-flex gap-4 justify-content-between align-items-center">
-                    {{item}}
-                    <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
-                      <path d="M0 0h24v24H0z" fill="none"></path>
-                    </svg>
-                  </mat-card-title>
-                  <mat-card-subtitle>
-                    <div class="avatar d-flex align-items-start ">
-                      <div class="d-flex align-items-center gap-4">
-                        <p class="mb-0">
-                          <span class="d-block text-black">Responsable</span>
-                        </p>
-                        <div class="img">
-                          <img src="../../assets/images/profile.jpg" alt="">
-                        </div>
+            <div class="example-container">
+              <h3>Rendu</h3>
 
+              <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="assignmentsRendu" class="example-list"
+                   (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of assignmentsRendu">
+                  <mat-card class="product-card-done">
+                    <mat-card-header>
+                      <mat-card-subtitle style="color: black">
+                        Devoir : {{item.nom}}
+                      </mat-card-subtitle>
+                      <mat-card-subtitle style="color: black">
+                        Matière: {{item.matiere.nom}}
+                      </mat-card-subtitle>
+                      <mat-card-subtitle style="color: black">
+                        Elève: {{item.eleve.nom}}
+                      </mat-card-subtitle>
+                      <mat-card-subtitle style="color: black">
+                        <small>à rendre le: {{item.dateDeRendu }}</small>
+                      </mat-card-subtitle>
+                      <div mat-card-avatar>
+                        <img [src]="item.matiere.photoProf" [alt]="item.matiere.nom" class="avatar">
                       </div>
-                    </div>
-                  </mat-card-subtitle>
-                </mat-card-header>
-
-                <mat-card-content style="cursor: pointer;" (click)="openShowAssignmentModal()">
-                  <div class="drag-here">
-                    <img mat-card-image class="img-assignment" src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                         alt="Photo of a Shiba Inu">
-                  </div>
-                </mat-card-content>
-                <mat-card-actions class="d-flex align-items-center justify-content-center p-4">
-                  <button mat-button>Catégories</button>
-                </mat-card-actions>
-              </mat-card>
+                    </mat-card-header>
+                    <mat-card-actions>
+                      <button mat-button color="primary" (click)="viewDetails(item)"><mat-icon>details</mat-icon>Détail</button>
+                    </mat-card-actions>
+                  </mat-card>
+                </div>
+              </div>
             </div>
-          </mat-card-content>
-        </mat-card>
+          </main>
+        </cdk-virtual-scroll-viewport>
+
+
+
+
+
+
+
+
+
 
       </div>
+<!--      //&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+
+
+
     </div>
   </div>
 </div>
