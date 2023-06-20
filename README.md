@@ -1,27 +1,31 @@
-# Assignment
+# Membre
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.5.
+22 - RAKOTOARISON HARILANTO Danih Stephane
+41 - RANDRIAMIARINAMANANA Onintsoa
 
-## Development server
+## Fonctionnalité
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+En plus des fonctionnalités déjà présentent pendant les cours dans ce TP, nous avons ajouté les fonctionnalités suivantes:
+1-Login avec JWT authentification
+2-Liste des assignments rendus et non-rendus séparés
+3-Drap and drop d'un dassignment avec non-rendu à rendu, qui déclenchera la notation
+4-Détails d'un assignment
+5-delete et édit d'un assignment
+6-Formulaire de type stepper pour l'ajout d'un assignment
+7-Ajout de messages de notification (SnackBar Material) 
+8-Ajout d'une Toolbar et une SideBar/Sidenav
+9- Collection d'élèves et de profs pour faciliter l'association devoir/élève et matières/profs
 
-## Code scaffolding
+## Mode d'emploi
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Pour installer ce projet en local:
+il faut ouvrir un terminal, lancer
+ -npm run build 
+ -npm run start
 
-## Build
+## Acces au site 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Pour acceder au site voici les authentifications:
+-admin: Admin/Test123456
+-non admin: Soa/Test123456
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
