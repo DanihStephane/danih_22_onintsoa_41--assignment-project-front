@@ -11,7 +11,7 @@ import { LoggingService } from './logging.service';
 export class MatiereService {
   matiere:Matiere[] = [];
 
-  url = "https://nodeangular421api.herokuapp.com/api/matiere";
+  url = "url";
   constructor(private loggingService:LoggingService, private http:HttpClient) {
     this.loggingService.setNiveauTrace(2);
   }

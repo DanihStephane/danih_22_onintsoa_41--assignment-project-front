@@ -11,7 +11,7 @@ import { LoggingService } from './logging.service';
 export class UsersService {
   user:Users[] = [];
 
-  url = "https://nodeangular421api.herokuapp.com/api/user";
+  url = "url";
   constructor(private loggingService:LoggingService, private http:HttpClient) {
     this.loggingService.setNiveauTrace(2);
   }
@@ -21,7 +21,7 @@ export class UsersService {
   }
 
   getUserByProfil(profil:number):Observable<any> {
-    return this.http.get<Users[]>(`https://nodeangular421api.herokuapp.com/api/users/${profil}`)
+    return this.http.get<Users[]>(`url/${profil}`)
   }
 
   getUser(id:number):Observable<any> {
