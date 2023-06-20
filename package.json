@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "build": "npm install; ng build",
+    "build": "npm install ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -20,7 +20,9 @@
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
+    "build": "^0.1.4",
     "express": "^4.18.2",
+    "ng": "^0.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
