@@ -26,6 +26,10 @@ import { ReturnAssignmentComponent } from './assignments/return-assignment/retur
 import { ModalComponent } from "./homepage/homepage.component";
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AssignmentDetailComponent} from "./assignments/assignment-detail/assignment-detail.component";
+import { EditAssignmentComponent } from "./assignments/edit-assignment/edit-assignment.component";
+
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 //requete
 import { HttpClientModule } from '@angular/common/http';
@@ -45,7 +49,9 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     ConfirmAssignmentComponent,
     DeleteAssignmentComponent,
     ReturnAssignmentComponent,
-    ModalComponent
+    ModalComponent,
+    AssignmentDetailComponent,
+    EditAssignmentComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +74,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     CommonModule,
     ScrollingModule,
     MatStepperModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
