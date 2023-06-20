@@ -17,23 +17,13 @@ export class AssignmentsService {
 
   }
 
-
-  // url = "http://localhost:8010/api/assignments";
   url = "http://localhost:8010/api/assignments";
-  //url= "https://mbdsmadagascar2022api.herokuapp.com/api/assignments";
 
   getAssignments(page:number, limit:number, token:any):Observable<any> {
-    // en réalité, bientôt au lieu de renvoyer un tableau codé en dur,
-    // on va envoyer une requête à un Web Service sur le cloud, qui mettra un
-    // certain temps à répondre. On va donc préparer le terrain en renvoyant
-    // non pas directement les données, mais en renvoyant un objet "Observable"
-    //return of(this.assignments);
     return this.http.get<Assignment[]>(this.url + "?page=" + page + "&limit=" + limit,{headers: {'x-access-token': token}});
   }
 
   getAssignment(id:number):Observable<Assignment|undefined> {
-    //let a = this.assignments.find(a => a.id === id);
-    //return of(a);
     return this.http.get<Assignment>(`${this.url}/${id}`)
     .pipe(
       map(a => {
@@ -57,13 +47,9 @@ export class AssignmentsService {
   }
 
   addAssignment(assignment:Assignment):Observable<any> {
-   // this.assignments.push(assignment);
-
     this.loggingService.log(assignment.nom, "ajouté");
 
     return this.http.post<Assignment>(this.url, assignment);
-
-    //return of("Assignment ajouté");
   }
 
   updateAssignment(assignment:Assignment):Observable<any> {
@@ -73,12 +59,8 @@ export class AssignmentsService {
   }
 
   deleteAssignment(assignment:Assignment):Observable<any> {
-    //let pos = this.assignments.indexOf(assignment);
-    //this.assignments.splice(pos, 1);
-
     this.loggingService.log(assignment.nom, "supprimé");
 
-    //return of("Assignment supprimé");
     return this.http.delete(this.url + "/" + assignment._id);
   }
 
@@ -110,7 +92,7 @@ export class AssignmentsService {
 
       appelsVersAddAssignment.push(this.addAssignment(nouvelAssignment));
     });
-    return forkJoin(appelsVersAddAssignment); // renvoie un seul Observable pour dire que c'est fini
+    return forkJoin(appelsVersAddAssignment);
   }
 
 }
