@@ -24,6 +24,8 @@ import { DeleteAssignmentComponent } from './assignments/delete-assignment/delet
 import { ReturnAssignmentComponent } from './assignments/return-assignment/return-assignment.component';
 
 import { ModalComponent } from "./homepage/homepage.component";
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 //requete
 import { HttpClientModule } from '@angular/common/http';
@@ -64,7 +66,9 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     HttpClientModule,
     FormsModule, ReactiveFormsModule,
     CommonModule,
-    ScrollingModule
+    ScrollingModule,
+    MatStepperModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

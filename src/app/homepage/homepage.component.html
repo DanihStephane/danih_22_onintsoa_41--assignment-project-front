@@ -13,7 +13,7 @@
     </div>
     <mat-list role="list" class="nav-menu">
       <mat-list-item role="listitem" class="text-black">
-        <div class="d-flex align-items-center gap-4">
+        <div class="d-flex align-items-center gap-4" (click)="openNewAssignmentModal()">
           <svg fill="#5c8eff" height="30px" width="30px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                xmlns:xlink="http://www.w3.org/1999/xlink"
                viewBox="0 0 27.963 27.963" xml:space="preserve">
@@ -27,7 +27,7 @@
               </g>
             </g>
           </svg>
-          New Assignment
+          New assignment
         </div>
       </mat-list-item>
       <mat-list-item role="listitem" class="text-black" (click)="logout()">

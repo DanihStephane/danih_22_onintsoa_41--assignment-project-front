@@ -1,122 +1,87 @@
-<div style="display: flex;justify-content: flex-end;">
-  <button (click)="dialogRef.close()" class="btn-close">
-    <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path opacity="0.4" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#292D32"/>
-      <path d="M13.0594 12.0001L15.3594 9.70011C15.6494 9.41011 15.6494 8.93011 15.3594 8.64011C15.0694 8.35011 14.5894 8.35011 14.2994 8.64011L11.9994 10.9401L9.69937 8.64011C9.40937 8.35011 8.92937 8.35011 8.63938 8.64011C8.34938 8.93011 8.34938 9.41011 8.63938 9.70011L10.9394 12.0001L8.63938 14.3001C8.34938 14.5901 8.34938 15.0701 8.63938 15.3601C8.78938 15.5101 8.97937 15.5801 9.16937 15.5801C9.35937 15.5801 9.54937 15.5101 9.69937 15.3601L11.9994 13.0601L14.2994 15.3601C14.4494 15.5101 14.6394 15.5801 14.8294 15.5801C15.0194 15.5801 15.2094 15.5101 15.3594 15.3601C15.6494 15.0701 15.6494 14.5901 15.3594 14.3001L13.0594 12.0001Z" fill="#292D32"/>
-    </svg>
-  </button>
-</div>
-
-<h1>New Assignment</h1>
-
-<mat-stepper #stepper>
-  <mat-step [stepControl]="firstFormGroup" errorMessage="Le nom du devoir est obligatoire." >
-    <form [formGroup]="firstFormGroup" class="d-flex flex-column form-field-show w-100">
-        <ng-template matStepLabel>Nom du devoir</ng-template>
-        <mat-form-field>
-          <mat-label>Titre</mat-label>
-          <input matInput placeholder="Texte" formControlName="firstCtrl"
-                 required>
-        </mat-form-field>
-        <div>
-          <h3>Le nom du devoir est un champs obligatoire</h3>
-          <div class="d-flex gap-4 justify-content-end p-4" style="position: relative; z-index: 0">
+<mat-card>
+  <mat-card-content>
+    <mat-stepper [linear]="false" #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Devoir</ng-template>
+          <mat-form-field>
+            <mat-label>Titre</mat-label>
+            <input matInput [(ngModel)]="nomDevoir" placeholder="Titre du devoir"
+                   formControlName="nomDevoir" required>
+            <mat-error *ngIf="firstFormGroup.controls['nomDevoir'].hasError('required') && submit">
+              Le titre du devoir est requis
+            </mat-error>
+          </mat-form-field>
+          <div>
             <button mat-button matStepperNext>Next</button>
           </div>
-        </div>
-    </form>
-  </mat-step>
+        </form>
+      </mat-step>
 
-  <mat-step [stepControl]="secondFormGroup" errorMessage="Le champs Date de rendu est obligatoire." >
-    <form [formGroup]="secondFormGroup" class="d-flex flex-column form-field-show w-100">
-      <ng-template matStepLabel>Date de rendu</ng-template>
-      <mat-form-field>
-        <mat-label>Date de rendu</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="secondCtrl">
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker class="text-black" #picker></mat-datepicker>
-      </mat-form-field>
-      <div>
-        <h3>Le champs Date de rendu est obligatoire</h3>
-        <div class="d-flex gap-4 justify-content-end">
+      <mat-step [stepControl]="secondFormGroup" label="Matière">
+        <form [formGroup]="secondFormGroup">
+          <div class="form-container">
+            <mat-form-field>
+              <mat-label>Matière</mat-label>
+              <mat-select (valueChange)="changeMatiere($event)"
+                          formControlName="matiere" [(ngModel)]="matiere"
+              >
+                <mat-option *ngFor="let mat of matieres" [value]="mat._id" >
+                  {{mat.nom}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-error *ngIf="secondFormGroup.controls['matiere'].hasError('required') && submit">
+              Veuillez sélectionner une matière
+            </mat-error>
+
+            <div class="image-container me-2" *ngIf="matiereSelected">
+              <img [src]="matiereSelected.photo" mat-card-md-image>
+            </div>
+            <div class="image-container me-2" *ngIf="matiereSelected">
+              <p>Professeur: </p>
+            </div>
+            <div class="image-container" *ngIf="matiereSelected">
+              <img [src]="matiereSelected.photoProf" mat-card-md-image>
+            </div>
+
+          </div>
+          <div class="button-container">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+
+      <mat-step [stepControl]="thirdFormGroup" label="Elève">
+        <form [formGroup]="thirdFormGroup">
+          <div class="form-container">
+            <mat-form-field>
+              <mat-label>Elève</mat-label>
+              <mat-select (valueChange)="changeEleve($event)" formControlName="eleve" [(ngModel)]="eleve">
+                <mat-option *ngFor="let mat of eleves" [value]="mat._id" >
+                  {{mat.nom}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-error *ngIf="thirdFormGroup.controls['eleve'].hasError('required') && submit">
+              Veuillez sélectionner un élève
+            </mat-error>
+
+            <div class="image-container me-2" *ngIf="eleveSelected">
+              <img [src]="eleveSelected.photo" mat-card-md-image>
+            </div>
+          </div>
+        </form>
+        <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
         </div>
-      </div>
-    </form>
-  </mat-step>
-
-  <mat-step [stepControl]="thirdFormGroup" errorMessage="Le champs Matière est obligatoire." >
-    <form [formGroup]="thirdFormGroup" class="d-flex flex-column form-field-show w-100">
-      <ng-template matStepLabel>Matière</ng-template>
-      <mat-form-field>
-        <mat-label>Matière</mat-label>
-        <mat-select formControlName="thirdCtrl"
-                    required>
-          <mat-option value="one">Web</mat-option>
-          <mat-option value="two">Grails</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <div>
-        <h3>Le champs Matière est obligatoire</h3>
-        <div class="d-flex gap-4 justify-content-end">
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+        <div class="btn-submit">
+          <button mat-button  color="success" (click)="onSubmit()">Enregistrer</button>
         </div>
-      </div>
-    </form>
-  </mat-step>
-
-  <mat-step [stepControl]="fourthFormGroup" errorMessage="Le champs Etudiant est obligatoire." >
-    <form [formGroup]="fourthFormGroup" class="d-flex flex-column form-field-show w-100">
-      <ng-template matStepLabel>Etudiant</ng-template>
-      <mat-form-field>
-        <mat-label>Etudiant</mat-label>
-        <mat-select formControlName="fourthCtrl"
-                    required>
-          <mat-option value="one">Eleve 1</mat-option>
-          <mat-option value="two">Eleve 2</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <div>
-        <h3>Le champs Etudiant est obligatoire</h3>
-        <div class="d-flex gap-4 justify-content-end">
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </div>
-    </form>
-  </mat-step>
-
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <h3>Recap .</h3>
-    <div class="d-flex flex-column form-field-show w-100">
-      <mat-form-field>
-        <mat-label>Nom du devoir</mat-label>
-        <input matInput value="Grails" disabled>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Date de rendu</mat-label>
-        <input matInput value="18/062023" disabled>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Matière</mat-label>
-        <input matInput value="Matière 1" disabled>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Etudiant</mat-label>
-        <input matInput value="Eleve 1" disabled>
-      </mat-form-field>
-    </div>
-
-    <div class="d-flex gap-4 justify-content-end">
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-      <button mat-button (click)="openSuccessSnackBar()">Enregister</button>
-    </div>
-  </mat-step>
-</mat-stepper>
+      </mat-step>
+    </mat-stepper>
+  </mat-card-content>
+</mat-card>

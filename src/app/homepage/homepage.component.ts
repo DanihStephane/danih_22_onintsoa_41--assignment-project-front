@@ -1,5 +1,5 @@
 import { Component, Inject, NgZone, OnInit,ViewChild } from '@angular/core';
-import { Router, RouterStateSnapshot } from '@angular/router';
+import {Router, RouterLink, RouterStateSnapshot} from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -7,6 +7,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { NewAssignmentComponent } from "../assignments/new-assignment/new-assignment.component";
+import { CommonModule } from '@angular/common';
 
 //Drag and drop
 import {NgFor} from '@angular/common';
@@ -44,21 +46,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css'],
   standalone: true,
-  imports: [
-    MatCardModule,
-    MatListModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MatButtonModule,
-    //drag and drop
-    CdkDropListGroup, CdkDropList, NgFor, CdkDrag, DragDropModule,
-    //Modal
-    DialogModule,
-    MatIconModule,
-    MatSnackBarModule,
-    CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll
-  ],
+    imports: [
+        MatCardModule,
+        MatListModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MatButtonModule,
+        //drag and drop
+        CdkDropListGroup, CdkDropList, NgFor, CdkDrag, DragDropModule,
+        //Modal
+        DialogModule,
+        MatIconModule,
+        MatSnackBarModule,
+        CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, RouterLink,
+        NewAssignmentComponent,
+        CommonModule
+    ],
   providers: [
     SnackbarService
   ]
@@ -66,6 +70,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 export class HomepageComponent implements OnInit {
+
+  openNewAssignmentModal(): void {
+    this.dialog.open(NewAssignmentComponent);
+  }
 
   logout(): void{
     this.authService.logOut().subscribe(reponse => {
