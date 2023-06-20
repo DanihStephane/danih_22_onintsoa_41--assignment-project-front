@@ -1,27 +1,46 @@
-# Assignment
+# Membre
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.5.
+22 - RAKOTOARISON HARILANTO Danih Stephane
 
-## Development server
+41 - RANDRIAMIARINAMANANA Onintsoa
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Fonctionnalité
 
-## Code scaffolding
+En plus des fonctionnalités déjà présentent pendant les cours dans ce TP, nous avons ajouté les fonctionnalités suivantes:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1-Login avec JWT authentification
 
-## Build
+2-Liste des assignments rendus et non-rendus séparés
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+3-Drap and drop d'un dassignment avec non-rendu à rendu, qui déclenchera la notation
 
-## Running unit tests
+4-Détails d'un assignment
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+5-delete et édit d'un assignment
 
-## Running end-to-end tests
+6-Formulaire de type stepper pour l'ajout d'un assignment
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+7-Ajout de messages de notification (SnackBar Material) 
 
-## Further help
+8-Ajout d'une Toolbar et une SideBar/Sidenav
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+9- Collection d'élèves et de profs pour faciliter l'association devoir/élève et matières/profs
+
+## Mode d'emploi
+
+Pour installer ce projet en local:
+
+il faut ouvrir un terminal, lancer
+
+ -npm run build 
+
+ -npm run start
+
+## Acces au site 
+
+Pour acceder au site voici les authentifications:
+
+-admin: Admin/Test123456
+
+-non admin: Soa/Test123456
+
